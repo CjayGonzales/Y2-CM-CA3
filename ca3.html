@@ -1,0 +1,217 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Animation</title>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script src="classes/ball.js"></script> 
+    <button id="btn_1">Speed Up</button>
+    <a href="ca3.html" id="btn_1">Restart Animation</a>
+    <button id="add_ball">Add Ball(Doesnt work)</button>
+	<script type="text/javascript">
+
+        $(document).ready(function() {
+
+            var canvas = document.getElementById("myCanvas");
+
+            var context = canvas.getContext("2d");
+            var canvasWidth = canvas.width;
+            var canvasHeight = canvas.height;
+
+            //initialisation code for the ball
+    
+            ball = new Ball(4,"#000000");
+            var xPos = 0;
+            var yPos = 0;
+
+            ball2 = new Ball(8, "#D5E68D");
+            var xPos2 = 20;
+            var yPos2 = 20;
+
+            ball3 = new Ball(10, "#47A025");
+            var xPos3 = -2;
+            var yPos3 = 0;
+            var scaleX = 128;
+            var scaleY = 10.667;
+            var translateX = 256;
+            var translateY = 480;
+
+            ball4 = new Ball(15, "#77B6EA");
+            var xPos4 = 0;
+            var yPos4 = 0;
+            var scaleX4 = 0.1777;
+            var scaleY4 = 240;
+            var translateX4 = 1;
+            var translateY4 = 240;
+
+            ball5 = new Ball(10);
+            var xPos5 = -3;
+            var yPos5 = 0;
+            var scaleX5 = 91.428;
+            var scaleY5 = 9.6;
+            var translateX5 = 274.284;
+            var translateY5 = 192;
+
+            ball7 = new Ball(10);
+            var xPos7 = 0;
+            var yPos7 = 0;
+            var tPos7 = 0;
+            var scaleX7 = 3;
+            var scaleY7 = 2;
+            var translateX7 = 320;
+            var translateY7 = 240;
+
+            ball8 = new Ball(10);
+            var xPos8 = 0;
+            var yPos8 = 0;
+            var tPos8 = 0;
+            var scaleX8 = 10;
+            var scaleY8 = 10;
+            var translateX8 = 320;
+            var translateY8  = 240;
+
+            function addBall(){
+              console.log("Yo!");
+              ball6 = new Ball(10);
+              var xPos6 = -3;
+              var yPos6 = 0;
+              var scaleX6 = 91.428;
+              var scaleY6 = 9.6;
+              var translateX6 = 274.284;
+              var translateY6 = 192;
+
+              yPos6 = Math.pow(xPos6, 1) - 2*Math.pow(xPos6,2) - 3*xPos6 +10;
+                ball6.x = xPos5*scaleX6 + translateX6;
+                ball6.y = canvasHeight - (yPos6*scaleY6 + translateY6) ;
+                xPos6 = xPos6 + 0.01;
+                ball6.draw(context);
+            }
+        
+ 
+            //sets up animation loop
+            function animate () {
+                addBall();
+               
+                //clears the canvas after every iteration of the loop
+                context.clearRect(0, 0, canvasWidth, canvasHeight);
+
+                //special animation function - accepts the callback function 'animate'
+                window.requestAnimationFrame(animate, canvas);
+
+                //movement of first ball
+                //Animate ball object along the curve y = x^2 / 250 - 1.6x + 200
+                yPos = Math.pow(xPos, 2)/250 - xPos + 200;
+                ball.x = xPos;
+			          ball.y = canvasHeight - yPos;
+                xPos = xPos + 2;
+                ball.draw(context);		
+
+                //movement of second ball
+                //Curve y = x^2 / 250 - 1.6x + 200
+                yPos2 = Math.pow(xPos2, 2)/250 - 1.6*xPos2 + 200;
+                ball2.x = xPos2;
+                ball2.y = canvasHeight - yPos2;
+                xPos2 = xPos2 + 1;
+                ball2.draw(context);
+
+                //Curve y = x^2 / 250 - 1.5x + 200
+                yPos2 = Math.pow(xPos2, 2)/250 - 1.5*xPos2 + 200;
+                ball2.x = xPos2;
+                ball2.y = canvasHeight - yPos2;
+                xPos2 = xPos2 + 1;
+                ball2.draw(context);
+
+                //Curve y = x^2 / 250 - 1.3x + 200
+                yPos2 = Math.pow(xPos2, 2)/250 - 1.3*xPos2 + 200;
+                ball2.x = xPos2;
+                ball2.y = canvasHeight - yPos2;
+                xPos2 = xPos2 + 1;
+                ball2.draw(context);
+
+                //Curve y = x^2 / 250 - 1x + 200
+                yPos2 = Math.pow(xPos2, 2)/250 - 1*xPos2 + 200;
+                ball2.x = xPos2;
+                ball2.y = canvasHeight - yPos2;
+                xPos2 = xPos2 + 1;
+                ball2.draw(context);
+
+                //third ball
+                yPos3 = 4*Math.pow(xPos3, 3) - 6*Math.pow(xPos3, 2) - 20*xPos3 - 12;
+                ball3.x = xPos3*scaleX + translateX;
+                ball3.y = canvasHeight - (yPos3*scaleY + translateY) ;
+                xPos3 = xPos3 + 0.02;
+                ball3.draw(context);
+
+                //Curve: y = 4x^3 - 6x^2 - 20x - 12
+                yPos3 = 4*Math.pow(xPos3, 1) - 6*Math.pow(xPos3, 2) - 20*xPos3 - 12;
+                ball3.x = xPos3*scaleX + translateX;
+                ball3.y = canvasHeight - (yPos3*scaleY + translateY) ;
+                xPos3 = xPos3 + 0.02;
+                ball3.draw(context);
+
+                //ball 4
+                //Curve: y = sin(x)
+                yPos4 = Math.sin(xPos4*Math.PI/180);
+                ball4.x = xPos4*scaleX4 + translateX4;
+                ball4.y = canvasHeight - (yPos4*scaleY4 + translateY4);
+                //keep it moving by incrementing by 0.01 every frame iteration
+                xPos4 = xPos4+ 10.0;
+                ball4.draw(context);
+
+                //ball 5
+                yPos5 = Math.pow(xPos5, 2) - 2*Math.pow(xPos5,2) - 3*xPos5 +10;
+                ball5.x = xPos5*scaleX5 + translateX5;
+                ball5.y = canvasHeight - (yPos5*scaleY5 + translateY5) ;
+                xPos5 = xPos5 + 0.01;
+                ball5.draw(context);
+
+                yPos5 = Math.pow(xPos5, 3) - 2*Math.pow(xPos5,2) - 3*xPos5 +10;
+                ball5.x = xPos5*scaleX5 + translateX5;
+                ball5.y = canvasHeight - (yPos5*scaleY5 + translateY5) ;
+                xPos5 = xPos5 + 0.01;
+                ball5.draw(context);
+
+                yPos5 = Math.pow(xPos5, 1) - 2*Math.pow(xPos5,2) - 3*xPos5 +10;
+                ball5.x = xPos5*scaleX5 + translateX5;
+                ball5.y = canvasHeight - (yPos5*scaleY5 + translateY5) ;
+                xPos5 = xPos5 + 0.01;
+                ball5.draw(context);
+
+                //ball 7
+                //parametric equations 
+                xPos7 = 100*Math.cos(tPos7*Math.PI/180); //x = 100cos(t);
+                yPos7 = 120*Math.sin(tPos7*Math.PI/180); //y = 120sin(t);
+                ball7.x = xPos7*scaleX7 + translateX7;
+                ball7.y = canvasHeight - (yPos7*scaleY7 + translateY7);
+                //moves per increment
+                tPos7 = tPos7 + 1.0;
+                ball7.draw(context);
+
+                //parametric equations 
+                xPos8 = 10*Math.cos(tPos8*Math.PI/180); // x = 10cos(t)
+                yPos8 = 20*Math.sin(tPos8*Math.PI/180); // y = 20sin(t)
+                /*sets the x and y coordinates of the ball object using x and y properties from Ball class*/
+                ball8.x = xPos8*scaleX8 + translateX8;
+                ball8.y = canvasHeight - (yPos8*scaleY8 + translateY8);
+                /*keep it moving by incrementing by a certain amount every frame iteration*/
+                tPos8 = tPos8 + 0.9;
+                ball8.draw(context);
+                
+            };
+
+            document.getElementById("add_ball").addEventListener("click", addBall);
+            document.getElementById("btn_1").addEventListener("click", animate);
+            window.requestAnimationFrame(animate, canvas);
+            window.requestAnimationFrame(addBall, canvas);
+        });
+
+	</script>
+	</head>  
+ <body>
+	<header>
+	</header>
+  <canvas id="myCanvas" width="640" height="480"
+   style="border:1px solid #000000;">
+  </canvas>
+  </body>
+</html>
